@@ -404,7 +404,6 @@ def configure(conf):
     conf.env['DESKAPPS_DIR'] = os.path.normpath(os.path.join(conf.env['SHAREDIR'], 'applications'))
     conf.env['BIN_NAME'] = APPNAME
     if opt.lv2:
-        conf.gxload('strip')
         conf.gxload('lv2')
 
     conf.gxload('cpu_optimization')

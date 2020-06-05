@@ -40,10 +40,7 @@ def lv2_add_common(tg, target, install_path, defines=None, linkflags=None, cxxfl
 @Configure.conf
 def lv2(bld, *k, **kw):
     lv2_base, dst = get_lv2_base(bld, kw)
-    strip = ''
-    if not bld.options.debug:
-        strip = 'strip'
-    tg = bld.shlib(features=strip, *k, **kw)
+    tg = bld.shlib(*k, **kw)
     cxxflags = []
     if not bld.env['OPT'] and bld.env['SSE2']:
         cxxflags = [ "-msse2", "-mfpmath=sse"]
@@ -60,10 +57,7 @@ def lv2_gui(bld, *k, **kw):
     if not bld.env['LV2GUI']:
         return None
     lv2_base, dst = get_lv2_base(bld, kw)
-    strip = ''
-    if not bld.options.debug:
-        strip = 'strip'
-    tg = bld.shlib(features=strip, *k, **kw)
+    tg = bld.shlib(*k, **kw)
     lv2_add_common(tg, lv2_base+'_gui', dst, ["LV2_GUI"], bld.env['OS_LV2_CXXFLAGS'])
     return tg
 
